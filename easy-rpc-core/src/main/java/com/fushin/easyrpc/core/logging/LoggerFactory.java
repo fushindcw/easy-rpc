@@ -68,6 +68,4 @@ public final class LoggerFactory {
         }
         return classMap;
     }
-
-
 }
