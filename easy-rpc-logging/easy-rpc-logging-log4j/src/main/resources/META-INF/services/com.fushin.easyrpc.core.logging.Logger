@@ -1,0 +1,1 @@
+log4j=com.fushin.easyrpc.logging.log4j.Log4jLogger
