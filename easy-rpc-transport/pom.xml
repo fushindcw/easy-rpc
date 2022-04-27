@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>easy-rpc-transport-api</module>
+        <module>easy-rpc-transport-netty</module>
     </modules>
 
     <properties>

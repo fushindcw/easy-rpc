@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
-    <property name = "ENCODER_PATTERN" value = "%d{yyyy-MM-dd  HH:mm:ss.SSS} [%thread] %-5level %logger{80} - %msg%n"/>
+    <property name = "ENCODER_PATTERN" value = "%blue(%d{yyyy-MM-dd  HH:mm:ss.SSS}) %yellow([%thread]) %-5level %logger{80} - %blue(%msg%n)"/>
     <!-- 控制台日志：输出全部日志到控制台 -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <!-- 控制输出流对象，默认System.out 改为System.err-->
@@ -11,7 +11,7 @@
         </encoder>
     </appender>
     <!-- root Logger 配置-->
-    <root>
+    <root level="DEBUG">
         <appender-ref ref="console"></appender-ref>
     </root>
 </configuration>

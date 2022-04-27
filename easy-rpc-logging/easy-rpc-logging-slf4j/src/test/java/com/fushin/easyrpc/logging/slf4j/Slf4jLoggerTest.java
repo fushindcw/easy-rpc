@@ -8,10 +8,13 @@ import org.junit.jupiter.api.Test;
  * @author 丁成文
  * @date 2022/2/23
  */
-public class Slf4jLoggerTest {
+class Slf4jLoggerTest {
+    static{
+        System.setProperty("easy.logger","slf4j");
+    }
     private final static Logger LOG = LoggerFactory.getLogger(Slf4jLoggerTest.class);
     @Test
-    public void loggerPrintTest(){
+    void loggerPrintTest(){
         LOG.info("hello slf4j");
     }
 }
