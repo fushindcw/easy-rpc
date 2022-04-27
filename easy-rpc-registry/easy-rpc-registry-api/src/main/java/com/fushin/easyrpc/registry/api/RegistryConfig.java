@@ -33,6 +33,11 @@ public class RegistryConfig {
      */
     private String address;
 
+    /**
+     * 命名空间
+     */
+    private String namespace;
+
     public void setAddress(String address) {
         this.address = address;
         try {

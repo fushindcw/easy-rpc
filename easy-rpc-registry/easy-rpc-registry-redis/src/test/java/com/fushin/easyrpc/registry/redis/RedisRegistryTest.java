@@ -1,4 +1,4 @@
-package com.fushin.easyrpc.registry.nacos;
+package com.fushin.easyrpc.registry.redis;
 
 import com.fushin.easyrpc.registry.api.RegistryConfig;
 import com.fushin.easyrpc.registry.api.RegistryService;
@@ -9,13 +9,13 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 /**
- * 
  * @author 丁成文
  * @date 2022/4/27
  */
-class NacosRegistryServiceTest {
+class RedisRegistryTest {
     RegistryConfig config = RegistryConfig.builder()
-            .address("127.0.0.1:8848")
+            .host("127.0.0.1")
+            .port(16379)
             .build();
     @Test
     void registerInstanceTest(){
@@ -25,19 +25,19 @@ class NacosRegistryServiceTest {
                 .port(20080)
                 .metadata(new HashMap<>())
                 .build();
-        RegistryService registryService = new NacosRegistryService(config);
+        RegistryService registryService = new RedisRegistryService(config);
         registryService.register(instance);
     }
 
     @Test
     void unRegisterInstanceTest(){
-        RegistryService registryService = new NacosRegistryService(config);
+        RegistryService registryService = new RedisRegistryService(config);
         registryService.unRegister("test1");
     }
 
     @Test
     void subscribeInstanceTest(){
-        RegistryService registryService = new NacosRegistryService(config);
+        RegistryService registryService = new RedisRegistryService(config);
         registryService.subscribe("test1", (instanceList -> {
             if(instanceList.isEmpty()){
                 System.out.println("清空了");
@@ -45,5 +45,10 @@ class NacosRegistryServiceTest {
                 System.out.println(instanceList);
             }
         }));
+
+        Scanner scanner = new Scanner(System.in);
+        while(scanner.hasNext()){
+            System.out.println(scanner.nextLine());
+        }
     }
 }
