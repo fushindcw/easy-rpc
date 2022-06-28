@@ -1,8 +1,7 @@
-package com.fushin.easyrpc.transport.netty.client;
+package com.fushin.easyrpc.transport.netty;
 
 import com.fushin.easyrpc.core.logging.Logger;
 import com.fushin.easyrpc.core.logging.LoggerFactory;
-import com.fushin.easyrpc.transport.netty.Codec;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
