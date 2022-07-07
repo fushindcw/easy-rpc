@@ -27,10 +27,8 @@ public class NettyClientHandler extends ChannelDuplexHandler {
         log.info("客户端接受到消息");
         Response resp = (Response) msg;
         String id = resp.getId();
-        Thread.sleep(10000);
         CompletableFuture future = ChannelHolder.remove(id);
         future.complete(resp);
-//        super.channelRead(ctx, msg);
     }
 
     @Override
