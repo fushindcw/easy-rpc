@@ -62,14 +62,16 @@ public class NettyClient {
     public static void main(String[] args)throws Exception {
         NettyClient client = new NettyClient();
         Channel c = client.connect();
-        Request request = new Request();
-        String id = "dingchw";
-        request.setId(id);
-        c.writeAndFlush(request);
+        for(int i = 0; i<10; i++){
+            Request request = new Request();
+            String id = "dingchw" + i;
+            request.setId(id);
+            c.writeAndFlush(request);
 
-        CompletableFuture future = new CompletableFuture();
-        ChannelHolder.put(id, future);
-        System.out.println("响应结果>>>{}" + future.get());
+            CompletableFuture future = new CompletableFuture();
+            ChannelHolder.put(id, future);
+            System.out.println("响应结果>>>{}" + future.get());
+        }
         client.destroy();
     }
 
