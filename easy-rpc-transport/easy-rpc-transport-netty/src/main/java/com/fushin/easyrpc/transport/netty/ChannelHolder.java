@@ -1,29 +1,23 @@
 package com.fushin.easyrpc.transport.netty;
 
-import io.netty.channel.Channel;
-
+import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * @author 丁成文
- * @date 2022/4/24
+ * @date 2022/7/7
  */
 public class ChannelHolder {
-    private static Map<String, NettyChannel> CHANNEL_MAP = new ConcurrentHashMap<>(64);
+    private static Map<String, CompletableFuture> map = new HashMap<>();
 
-    public static NettyChannel getOrAddChannel(String serviceKey, Channel ch){
-        NettyChannel nettyChannel;
-        if(CHANNEL_MAP.containsKey(serviceKey)){
-            nettyChannel = CHANNEL_MAP.get(serviceKey);
-        }else {
-            nettyChannel = new NettyChannel(null,serviceKey, ch);
-            CHANNEL_MAP.putIfAbsent(serviceKey, nettyChannel);
-        }
-        return nettyChannel;
+    public static void put(String key, CompletableFuture future){
+        map.put(key, future);
     }
 
-    public static NettyChannel get(String serviceKey){
-        return CHANNEL_MAP.get(serviceKey);
+    public static CompletableFuture remove(String key){
+        CompletableFuture future = map.get(key);
+        map.remove(key);
+        return future;
     }
 }
